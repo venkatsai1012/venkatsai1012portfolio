@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kammari Venkat Sai | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background:#0a0f1c;
+    color:#cbd5e1;
+}
+
+/* Navbar */
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    padding:20px 80px;
+    background:#0a0f1c;
+    border-bottom:1px solid #1f2937;
+    z-index:1000;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:600;
+    color:#22d3ee;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:40px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:#94a3b8;
+    transition:.3s;
+}
+
+nav ul li a:hover{
+    color:#22d3ee;
+}
+
+/* Section */
+section{
+    padding:120px 80px;
+}
+
+/* Hero */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    background:linear-gradient(135deg,#0a0f1c,#0f172a);
+}
+
+.hero h3{
+    color:#22d3ee;
+    letter-spacing:3px;
+    font-weight:400;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:60px;
+    font-weight:700;
+}
+
+.hero h1 span{
+    color:#22d3ee;
+}
+
+.hero p{
+    margin-top:20px;
+    max-width:600px;
+    line-height:1.7;
+    color:#94a3b8;
+}
+
+.btn-group{
+    margin-top:30px;
+}
+
+.btn{
+    padding:12px 25px;
+    border-radius:8px;
+    text-decoration:none;
+    margin-right:15px;
+    font-weight:500;
+}
+
+.primary{
+    background:#22d3ee;
+    color:#0a0f1c;
+}
+
+.secondary{
+    border:1px solid #22d3ee;
+    color:#22d3ee;
+}
+
+/* Headings */
+.section-title{
+    font-size:40px;
+    margin-bottom:50px;
+    position:relative;
+}
+
+.section-title::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-10px;
+    width:60px;
+    height:3px;
+    background:#22d3ee;
+}
+
+/* Cards */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#111827;
+    padding:30px;
+    border-radius:15px;
+    border:1px solid #1f2937;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#22d3ee;
+}
+
+.card h3{
+    margin-bottom:15px;
+    color:#e2e8f0;
+}
+
+.card p{
+    font-size:14px;
+    line-height:1.6;
+    color:#94a3b8;
+}
+
+/* Tags */
+.tags{
+    margin-top:20px;
+}
+
+.tag{
+    display:inline-block;
+    background:#0f172a;
+    border:1px solid #22d3ee;
+    color:#22d3ee;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:12px;
+    margin:5px 5px 0 0;
+}
+
+/* Internship badge */
+.badge{
+    display:inline-block;
+    background:#22d3ee;
+    color:#0a0f1c;
+    padding:5px 15px;
+    border-radius:20px;
+    font-size:12px;
+    margin-bottom:15px;
+}
+
+/* Footer */
+footer{
+    text-align:center;
+    padding:40px;
+    border-top:1px solid #1f2937;
+    color:#64748b;
+}
+
+a{
+    color:#22d3ee;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+@media(max-width:768px){
+    nav{
+        padding:20px;
+    }
+    section{
+        padding:100px 20px;
+    }
+    .hero h1{
+        font-size:40px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">VS</div>
+    <ul>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <h3>ELECTRONICS ENGINEERING STUDENT</h3>
+    <h1>Kammari <span>Venkat Sai</span></h1>
+    <p>
+        A second-year Electronics Engineering student passionate about microcontrollers 
+        and embedded systems, eager to integrate hardware and software seamlessly.
+    </p>
+
+    <div class="btn-group">
+        <a href="#contact" class="btn primary">Contact Me</a>
+        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME" 
+           target="_blank" 
+           class="btn secondary">LinkedIn</a>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <h2 class="section-title">Technical Skills</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>Microcontrollers</h3>
+            <p>Arduino, ESP32, Particle Photon</p>
+        </div>
+
+        <div class="card">
+            <h3>Programming</h3>
+            <p>C, C++, Python</p>
+        </div>
+
+        <div class="card">
+            <h3>Tools</h3>
+            <p>Keil, Proteus, Wokwi, VS Code, Tasm</p>
+        </div>
+
+        <div class="card">
+            <h3>PCB Design</h3>
+            <p>Eagle, EasyEDA</p>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="grid">
+
+        <div class="card">
+            <h3>Fire Surveillance Bot</h3>
+            <p>IoT-based robot using ESP32, ESP32-CAM, flame, gas, and ultrasonic sensors. 
+               Remote control via Bluetooth/Wi-Fi using MQTT protocol.</p>
+        </div>
+
+        <div class="card">
+            <h3>ESP32 Car</h3>
+            <p>Wi-Fi/Bluetooth-controlled car with obstacle avoidance, 
+               speed control and real-time operation.</p>
+        </div>
+
+        <div class="card">
+            <h3>Smart Home Automation</h3>
+            <p>Automated system using sensors and microcontrollers 
+               to control appliances and improve energy efficiency.</p>
+        </div>
+
+        <div class="card">
+            <h3>Dual Axis Solar Tracker</h3>
+            <p>Solar tracking system that automatically adjusts panel position 
+               based on sun movement to maximize energy output.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- INTERNSHIP -->
+<section>
+    <h2 class="section-title">Internship</h2>
+    <div class="card">
+        <div class="badge">Currently Working</div>
+        <h3>Embedded System Engineer Intern</h3>
+        <p><strong>Tropoleap India Pvt. Ltd.</strong> (July 2025 – Present)</p>
+        <p>Working on IoT and microcontroller-based projects.</p>
+
+        <div class="tags">
+            <span class="tag">Embedded Systems</span>
+            <span class="tag">IoT</span>
+            <span class="tag">ESP32</span>
+            <span class="tag">Arduino</span>
+            <span class="tag">PCB Design</span>
+        </div>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="grid">
+        <div class="card">
+            <h3>B.Tech in Electronics Engineering</h3>
+            <p>B.V. Raju Institute of Technology (2023 – Present)</p>
+        </div>
+
+        <div class="card">
+            <h3>Intermediate (MPC)</h3>
+            <p>Sri Chaitanya Junior College</p>
+        </div>
+
+        <div class="card">
+            <h3>SSC</h3>
+            <p>Daffodils High School</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="card">
+        <p>Email: 23211A0494@bvrit.ac.in</p>
+        <p>Phone: +91 6305425254</p>
+        <p>
+            LinkedIn: 
+            <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME" target="_blank">
+                Kammari Venkat Sai
+            </a>
+        </p>
+    </div>
+</section>
+
+<footer>
+    © 2026 Kammari Venkat Sai | Embedded Systems Portfolio
+</footer>
+
+</body>
+</html>
