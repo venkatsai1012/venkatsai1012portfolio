@@ -61,38 +61,72 @@ section{
     padding:120px 80px;
 }
 
-/* Hero */
+/* Hero Section */
 .hero{
-    height:100vh;
+    min-height:100vh;
     display:flex;
-    flex-direction:column;
-    justify-content:center;
+    align-items:center;
     background:linear-gradient(135deg,#0a0f1c,#0f172a);
 }
 
-.hero h3{
+.hero-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+    flex-wrap:wrap;
+    width:100%;
+}
+
+.hero-text{
+    flex:1;
+    min-width:300px;
+}
+
+.hero-text h3{
     color:#22d3ee;
     letter-spacing:3px;
-    font-weight:400;
     margin-bottom:20px;
 }
 
-.hero h1{
+.hero-text h1{
     font-size:60px;
-    font-weight:700;
 }
 
-.hero h1 span{
+.hero-text span{
     color:#22d3ee;
 }
 
-.hero p{
+.hero-text p{
     margin-top:20px;
     max-width:600px;
     line-height:1.7;
     color:#94a3b8;
 }
 
+.hero-image{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.hero-image img{
+    width:320px;
+    height:320px;
+    object-fit:cover;
+    object-position:center top;
+    border-radius:50%;
+    border:4px solid #22d3ee;
+    box-shadow:0 0 50px rgba(34,211,238,0.8);
+    transition:0.4s ease;
+}
+
+.hero-image img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 70px rgba(34,211,238,1);
+}
+
+/* Buttons */
 .btn-group{
     margin-top:30px;
 }
@@ -102,7 +136,7 @@ section{
     border-radius:8px;
     text-decoration:none;
     margin-right:15px;
-    font-weight:500;
+    transition:0.3s;
 }
 
 .primary{
@@ -110,16 +144,33 @@ section{
     color:#0a0f1c;
 }
 
+.primary:hover{
+    box-shadow:0 0 20px #22d3ee;
+}
+
 .secondary{
     border:1px solid #22d3ee;
     color:#22d3ee;
 }
 
-/* Headings */
+.secondary:hover{
+    background:#22d3ee;
+    color:#0a0f1c;
+}
+
+/* Titles */
 .section-title{
     font-size:40px;
     margin-bottom:50px;
     position:relative;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 0.8s ease;
+}
+
+.section-title.active{
+    opacity:1;
+    transform:translateY(0);
 }
 
 .section-title::after{
@@ -132,54 +183,55 @@ section{
     background:#22d3ee;
 }
 
-/* Cards */
+/* Grid */
 .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap:30px;
 }
 
+/* Cards */
 .card{
     background:#111827;
     padding:30px;
     border-radius:15px;
     border:1px solid #1f2937;
-    transition:.3s;
+    transition:0.4s;
+    opacity:0;
+    transform:translateY(40px);
+}
+
+.card.active{
+    opacity:1;
+    transform:translateY(0);
 }
 
 .card:hover{
-    transform:translateY(-5px);
     border-color:#22d3ee;
+    box-shadow:0 0 25px rgba(34,211,238,0.6);
+    transform:translateY(-8px);
 }
 
 .card h3{
-    margin-bottom:15px;
-    color:#e2e8f0;
+    margin-bottom:10px;
 }
 
 .card p{
     font-size:14px;
-    line-height:1.6;
     color:#94a3b8;
 }
 
 /* Tags */
-.tags{
-    margin-top:20px;
-}
-
 .tag{
     display:inline-block;
-    background:#0f172a;
     border:1px solid #22d3ee;
-    color:#22d3ee;
-    padding:5px 12px;
+    padding:5px 10px;
     border-radius:20px;
-    font-size:12px;
     margin:5px 5px 0 0;
+    font-size:12px;
 }
 
-/* Internship badge */
+/* Badge */
 .badge{
     display:inline-block;
     background:#22d3ee;
@@ -187,7 +239,7 @@ section{
     padding:5px 15px;
     border-radius:20px;
     font-size:12px;
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 
 /* Footer */
@@ -198,25 +250,11 @@ footer{
     color:#64748b;
 }
 
-a{
-    color:#22d3ee;
-    text-decoration:none;
-}
-
-a:hover{
-    text-decoration:underline;
-}
-
+/* Responsive */
 @media(max-width:768px){
-    nav{
-        padding:20px;
-    }
-    section{
-        padding:100px 20px;
-    }
-    .hero h1{
-        font-size:40px;
-    }
+    nav{padding:20px;}
+    section{padding:100px 20px;}
+    .hero-text h1{font-size:40px;}
 }
 </style>
 </head>
@@ -224,148 +262,97 @@ a:hover{
 <body>
 
 <nav>
-    <div class="logo">VS</div>
-    <ul>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+<div class="logo">VS</div>
+<ul>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#internship">Internship</a></li>
+<li><a href="#certifications">Certifications</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-    <h3>ELECTRONICS ENGINEERING STUDENT</h3>
-    <h1>Kammari <span>Venkat Sai</span></h1>
-    <p>
-        A second-year Electronics Engineering student passionate about microcontrollers 
-        and embedded systems, eager to integrate hardware and software seamlessly.
-    </p>
-
-    <div class="btn-group">
-        <a href="#contact" class="btn primary">Contact Me</a>
-        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME" 
-           target="_blank" 
-           class="btn secondary">LinkedIn</a>
-    </div>
+<div class="hero-container">
+<div class="hero-text">
+<h3>ELECTRONICS ENGINEERING STUDENT</h3>
+<h1>Kammari <span>Venkat Sai</span></h1>
+<p>Passionate about microcontrollers and embedded systems.</p>
+<div class="btn-group">
+<a href="#contact" class="btn primary">Contact Me</a>
+<a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME" target="_blank" class="btn secondary">LinkedIn</a>
+</div>
+</div>
+<div class="hero-image">
+<img src="profile.jpg" alt="Kammari Venkat Sai">
+</div>
+</div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
-    <h2 class="section-title">Technical Skills</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>Microcontrollers</h3>
-            <p>Arduino, ESP32, Particle Photon</p>
-        </div>
-
-        <div class="card">
-            <h3>Programming</h3>
-            <p>C, C++, Python</p>
-        </div>
-
-        <div class="card">
-            <h3>Tools</h3>
-            <p>Keil, Proteus, Wokwi, VS Code, Tasm</p>
-        </div>
-
-        <div class="card">
-            <h3>PCB Design</h3>
-            <p>Eagle, EasyEDA</p>
-        </div>
-    </div>
+<h2 class="section-title reveal">Technical Skills</h2>
+<div class="grid">
+<div class="card reveal"><h3>Microcontrollers</h3><p>Arduino, ESP32, Particle Photon</p></div>
+<div class="card reveal"><h3>Programming</h3><p>C, C++, Python</p></div>
+<div class="card reveal"><h3>Tools</h3><p>Keil, Proteus, Wokwi, VS Code, Tasm</p></div>
+<div class="card reveal"><h3>PCB Design</h3><p>Eagle, EasyEDA</p></div>
+</div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
-    <h2 class="section-title">Projects</h2>
-    <div class="grid">
-
-        <div class="card">
-            <h3>Fire Surveillance Bot</h3>
-            <p>IoT-based robot using ESP32, ESP32-CAM, flame, gas, and ultrasonic sensors. 
-               Remote control via Bluetooth/Wi-Fi using MQTT protocol.</p>
-        </div>
-
-        <div class="card">
-            <h3>ESP32 Car</h3>
-            <p>Wi-Fi/Bluetooth-controlled car with obstacle avoidance, 
-               speed control and real-time operation.</p>
-        </div>
-
-        <div class="card">
-            <h3>Smart Home Automation</h3>
-            <p>Automated system using sensors and microcontrollers 
-               to control appliances and improve energy efficiency.</p>
-        </div>
-
-        <div class="card">
-            <h3>Dual Axis Solar Tracker</h3>
-            <p>Solar tracking system that automatically adjusts panel position 
-               based on sun movement to maximize energy output.</p>
-        </div>
-
-    </div>
+<h2 class="section-title reveal">Projects</h2>
+<div class="grid">
+<div class="card reveal"><h3>Fire Surveillance Bot</h3></div>
+<div class="card reveal"><h3>ESP32 Car</h3></div>
+<div class="card reveal"><h3>Smart Home Automation</h3></div>
+<div class="card reveal"><h3>Dual Axis Solar Tracker</h3></div>
+</div>
 </section>
 
-<!-- INTERNSHIP -->
-<section>
-    <h2 class="section-title">Internship</h2>
-    <div class="card">
-        <div class="badge">Currently Working</div>
-        <h3>Embedded System Engineer Intern</h3>
-        <p><strong>Tropoleap India Pvt. Ltd.</strong> (July 2025 – Present)</p>
-        <p>Working on IoT and microcontroller-based projects.</p>
-
-        <div class="tags">
-            <span class="tag">Embedded Systems</span>
-            <span class="tag">IoT</span>
-            <span class="tag">ESP32</span>
-            <span class="tag">Arduino</span>
-            <span class="tag">PCB Design</span>
-        </div>
-    </div>
+<section id="internship">
+<h2 class="section-title reveal">Internship</h2>
+<div class="card reveal">
+<div class="badge">Currently Working</div>
+<h3>Embedded System Engineer Intern</h3>
+<p><strong>Tropoleap India Pvt. Ltd.</strong> (July 2025 – Present)</p>
+</div>
 </section>
 
-<!-- EDUCATION -->
-<section id="education">
-    <h2 class="section-title">Education</h2>
-    <div class="grid">
-        <div class="card">
-            <h3>B.Tech in Electronics Engineering</h3>
-            <p>B.V. Raju Institute of Technology (2023 – Present)</p>
-        </div>
-
-        <div class="card">
-            <h3>Intermediate (MPC)</h3>
-            <p>Sri Chaitanya Junior College</p>
-        </div>
-
-        <div class="card">
-            <h3>SSC</h3>
-            <p>Daffodils High School</p>
-        </div>
-    </div>
+<section id="certifications">
+<h2 class="section-title reveal">Certifications</h2>
+<div class="grid">
+<div class="card reveal"><h3>PCB Design Fundamentals – AICTE IDEA Lab</h3></div>
+<div class="card reveal"><h3>Introduction to Embedded IoT – HCL</h3></div>
+</div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-    <h2 class="section-title">Get In Touch</h2>
-    <div class="card">
-        <p>Email: 23211A0494@bvrit.ac.in</p>
-        <p>Phone: +91 6305425254</p>
-        <p>
-            LinkedIn: 
-            <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME" target="_blank">
-                Kammari Venkat Sai
-            </a>
-        </p>
-    </div>
+<h2 class="section-title reveal">Get In Touch</h2>
+<div class="card reveal">
+<p>Email: 23211A0494@bvrit.ac.in</p>
+<p>Phone: +91 6305425254</p>
+<p>LinkedIn: <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME" target="_blank">Kammari Venkat Sai</a></p>
+</div>
 </section>
 
 <footer>
-    © 2026 Kammari Venkat Sai | Embedded Systems Portfolio
+© 2026 Kammari Venkat Sai | Embedded Systems Portfolio
 </footer>
+
+<script>
+const reveals = document.querySelectorAll(".reveal");
+function revealOnScroll(){
+const windowHeight = window.innerHeight;
+reveals.forEach(el=>{
+const elementTop = el.getBoundingClientRect().top;
+if(elementTop < windowHeight - 100){
+el.classList.add("active");
+}
+});
+}
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+</script>
 
 </body>
 </html>
