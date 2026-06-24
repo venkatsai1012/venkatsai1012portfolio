@@ -1,1 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kammari Venkat Sai — Embedded Systems & IoT Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F7F4;
+    --panel:#FFFFFF;
+    --ink:#16203A;
+    --ink-soft:#525C75;
+    --copper:#B5602F;
+    --teal:#23615C;
+    --line:#E1E0D8;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--copper); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
 
+  /* trace divider */
+  .trace{
+    width:100%; height:18px; margin:0 auto;
+    overflow:hidden;
+  }
+  .trace svg{display:block; width:100%; height:18px;}
+
+  header.hero{
+    padding:90px 0 50px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:8px; height:8px;
+    background:var(--copper);
+    border-radius:50%;
+    display:inline-block;
+  }
+  h1.name{
+    font-family:var(--display);
+    font-weight:700;
+    font-size:clamp(38px, 6vw, 60px);
+    letter-spacing:-0.01em;
+    line-height:1.05;
+    color:var(--ink);
+  }
+  .role{
+    font-family:var(--display);
+    font-size:clamp(18px,2.4vw,22px);
+    color:var(--ink-soft);
+    margin-top:10px;
+    font-weight:500;
+  }
+  .tagline{
+    margin-top:22px;
+    max-width:560px;
+    font-size:16px;
+    color:var(--ink-soft);
+  }
+  .hero-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:36px;
+  }
+  .hero-text{flex:1; min-width:0;}
+  .hero-photo{
+    flex-shrink:0;
+    width:148px;
+    height:148px;
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--panel);
+    position:relative;
+  }
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .photo-fallback{
+    display:none;
+    position:absolute;
+    inset:0;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:var(--mono);
+    font-size:11px;
+    line-height:1.5;
+    color:var(--ink-soft);
+    padding:10px;
+  }
+  .hero-photo.no-photo img{display:none;}
+  .hero-photo.no-photo .photo-fallback{display:flex;}
+
+  @media (max-width:640px){
+    .hero-top{flex-direction:column-reverse; align-items:center; text-align:left;}
+    .hero-photo{width:120px; height:120px;}
+  }
+
+  nav.toc{
+    margin-top:36px;
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  nav.toc a{color:var(--ink-soft);}
+  nav.toc a:hover{color:var(--copper); text-decoration:none;}
+
+  section{padding:56px 0;}
+  section + section{border-top:1px solid var(--line);}
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:30px;
+  }
+  .section-num{
+    font-family:var(--mono);
+    color:var(--copper);
+    font-size:13px;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:26px;
+    color:var(--ink);
+  }
+
+  /* Education */
+  .edu-item{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:6px 20px;
+    padding:18px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .edu-item:last-child{border-bottom:none;}
+  .edu-title{font-weight:600; font-size:16px;}
+  .edu-sub{color:var(--ink-soft); font-size:14.5px; margin-top:3px;}
+  .edu-meta{
+    text-align:right;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .edu-score{color:var(--teal); font-weight:600;}
+
+  /* Skills */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px 32px;
+  }
+  .skill-cat{font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--copper); margin-bottom:8px;}
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    border:1px solid var(--line);
+    background:var(--panel);
+    padding:6px 12px;
+    border-radius:4px;
+    font-size:13.5px;
+    color:var(--ink);
+  }
+
+  /* Internship */
+  .intern-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-left:3px solid var(--teal);
+    padding:22px 24px;
+    border-radius:4px;
+  }
+  .intern-top{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;}
+  .intern-role{font-weight:600; font-size:16px;}
+  .intern-dates{font-family:var(--mono); font-size:13px; color:var(--ink-soft);}
+  .intern-desc{margin-top:10px; color:var(--ink-soft); font-size:14.5px;}
+
+  /* Projects */
+  .project{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:24px 26px;
+    margin-bottom:18px;
+  }
+  .project-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .project-title{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:18px;
+  }
+  .project-link{
+    font-family:var(--mono);
+    font-size:12.5px;
+    border:1px solid var(--copper);
+    color:var(--copper);
+    padding:4px 10px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .project-link:hover{background:var(--copper); color:#fff; text-decoration:none;}
+  ul.project-points{
+    margin-top:12px;
+    padding-left:18px;
+    color:var(--ink-soft);
+    font-size:14.5px;
+  }
+  ul.project-points li{margin-bottom:6px;}
+  .project-tags{
+    margin-top:14px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .tag{
+    font-family:var(--mono);
+    font-size:11.5px;
+    color:var(--teal);
+    background:rgba(35,97,92,0.08);
+    padding:3px 8px;
+    border-radius:3px;
+  }
+
+  /* Certs & Hackathon */
+  .twocol{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:40px;
+  }
+  ul.plain{list-style:none;}
+  ul.plain li{
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  ul.plain li:last-child{border-bottom:none;}
+  ul.plain li strong{color:var(--ink); font-weight:600;}
+
+  footer{
+    padding:50px 0 70px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-family:var(--mono);
+    font-size:12.5px;
+  }
+
+  .contact-intro{color:var(--ink-soft); font-size:15px; max-width:460px; margin-bottom:26px;}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+  }
+  .contact-card{
+    display:block;
+    border:1px solid var(--line);
+    background:var(--panel);
+    border-radius:6px;
+    padding:18px 18px;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .contact-card:hover{border-color:var(--copper); transform:translateY(-2px); text-decoration:none;}
+  .contact-label{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--copper);
+    margin-bottom:6px;
+  }
+  .contact-value{
+    font-size:14px;
+    color:var(--ink);
+    font-weight:500;
+    word-break:break-word;
+  }
+
+  @media (max-width:640px){
+    .contact-grid{grid-template-columns:1fr 1fr;}
+  }
+
+  @media (max-width:640px){
+    header.hero{padding:60px 0 36px;}
+    .skills-grid{grid-template-columns:1fr;}
+    .twocol{grid-template-columns:1fr;}
+    .edu-item{grid-template-columns:1fr;}
+    .edu-meta{text-align:left;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+      <div class="hero-text">
+        <div class="eyebrow">Available for full-time roles · 2027 grad</div>
+        <h1 class="name">Kammari Venkat Sai</h1>
+        <div class="role">Embedded Systems &amp; IoT Engineer</div>
+        <p class="tagline">Third-year Electronics Engineering student building hardware-to-software systems — from real-time RTOS schedulers to sensor-driven embedded products. Currently interning at Tropoleap.</p>
+      </div>
+      <div class="hero-photo">
+        <img src="profile.jpg" alt="Kammari Venkat Sai" onerror="this.parentElement.classList.add('no-photo')">
+        <div class="photo-fallback">Add your photo<br>(replace REPLACE_WITH_YOUR_PHOTO.jpg)</div>
+      </div>
+    </div>
+    <nav class="toc">
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#internship">Internship</a>
+      <a href="#projects">Projects</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="trace"><svg viewBox="0 0 920 18" preserveAspectRatio="none"><path d="M0 9 L120 9 L132 1 L300 1 L312 9 L500 9 L512 17 L700 17 L712 9 L920 9" fill="none" stroke="#E1E0D8" stroke-width="2"/></svg></div>
+
+<section id="education">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">01</span><h2>Education</h2></div>
+
+    <div class="edu-item">
+      <div>
+        <div class="edu-title">B.Tech, Electronics Engineering (ECE)</div>
+        <div class="edu-sub">B. V. Raju Institute of Technology, Narsapur, Medak</div>
+      </div>
+      <div class="edu-meta">2023 – Present<br><span class="edu-score">CGPA 7.95</span></div>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <div class="edu-title">Intermediate, MPC</div>
+        <div class="edu-sub">Sri Chaitanya Junior College, Hyderabad</div>
+      </div>
+      <div class="edu-meta">2021 – 2023<br><span class="edu-score">94%</span></div>
+    </div>
+
+    <div class="edu-item">
+      <div>
+        <div class="edu-title">SSC</div>
+        <div class="edu-sub">Daffodil's High School, Sanga Reddy</div>
+      </div>
+      <div class="edu-meta">2021<br><span class="edu-score">100%</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">02</span><h2>Technical Skills</h2></div>
+    <div class="skills-grid">
+      <div>
+        <div class="skill-cat">Microcontrollers &amp; Boards</div>
+        <div class="chip-row">
+          <span class="chip">Arduino</span><span class="chip">ESP32</span><span class="chip">Particle Photon</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat">Programming Languages</div>
+        <div class="chip-row">
+          <span class="chip">C</span><span class="chip">C++</span><span class="chip">Python</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat">Embedded System Tools</div>
+        <div class="chip-row">
+          <span class="chip">Keil</span><span class="chip">Proteus</span><span class="chip">Wokwi</span><span class="chip">VS Code</span><span class="chip">TASM</span>
+        </div>
+      </div>
+      <div>
+        <div class="skill-cat">PCB Design &amp; Simulation</div>
+        <div class="chip-row">
+          <span class="chip">Eagle</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="internship">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">03</span><h2>Internship</h2></div>
+    <div class="intern-card">
+      <div class="intern-top">
+        <div class="intern-role">Tropoleap — Embedded &amp; IoT Intern</div>
+        <div class="intern-dates">July 2025 – Present</div>
+      </div>
+      <p class="intern-desc">Working as an embedded and IoT intern, contributing to hardware-software integration tasks.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">04</span><h2>Projects</h2></div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Real-Time Dynamic Railway Network Dispatcher</div>
+        <a class="project-link" href="https://github.com/Sky-9426/realtime-dynamic-railway-network" target="_blank" rel="noopener">View code →</a>
+      </div>
+      <ul class="project-points">
+        <li>Designed a real-time station platform management and network optimization module for a QNX RTOS-based railway dispatcher, managing multi-platform allocations for 45+ concurrent trains.</li>
+        <li>Implemented multi-threaded scheduling using independent POSIX FIFO threads assigned to priority levels (10–50) to enforce strict real-time execution.</li>
+        <li>Engineered a race-condition-free track allocation system using POSIX mutexes and condition variables to arbitrate multi-train track requests.</li>
+      </ul>
+      <div class="project-tags"><span class="tag">QNX RTOS</span><span class="tag">POSIX threads</span><span class="tag">Real-time scheduling</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Smart Waste Sorting Machine</div>
+      </div>
+      <ul class="project-points">
+        <li>Built on STM32N6570-DK, leveraging its Neural-ART NPU to run a quantized MobileNet V2 model for real-time waste classification into metal and recyclables (plastic, paper, cardboard).</li>
+        <li>Integrated an IR sensor for drop detection, inductive proximity and magnetic Hall sensors to distinguish ferrous vs. non-ferrous materials, and an ultrasonic sensor for fill-level monitoring.</li>
+        <li>Controlled a NEMA 17 stepper motor to rotate the internal sorting tray, plus dual 5V fans for thermal management during continuous NPU inference.</li>
+      </ul>
+      <div class="project-tags"><span class="tag">STM32N6570</span><span class="tag">Edge ML / NPU</span><span class="tag">Sensor fusion</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Fire Surveillance Bot</div>
+      </div>
+      <ul class="project-points">
+        <li>Developed an IoT-based robot using ESP32, ESP32-CAM, and flame/gas/ultrasonic sensors to detect fire hazards and stream real-time video.</li>
+        <li>Enabled remote control via Bluetooth/Wi-Fi and integrated a custom MQTT server for continuous data transmission and monitoring in high-risk environments.</li>
+      </ul>
+      <div class="project-tags"><span class="tag">ESP32-CAM</span><span class="tag">MQTT</span><span class="tag">Remote monitoring</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">ESP32 Car</div>
+      </div>
+      <ul class="project-points">
+        <li>Built a Wi-Fi/Bluetooth-controlled car using ESP32, a motor driver, and ultrasonic sensors with obstacle avoidance, speed control, and real-time remote operation.</li>
+      </ul>
+      <div class="project-tags"><span class="tag">ESP32</span><span class="tag">Obstacle avoidance</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Smart Home Automation</div>
+      </div>
+      <ul class="project-points">
+        <li>Developed an automated smart home system using sensors and microcontrollers to control appliances based on environmental conditions, improving energy efficiency and comfort.</li>
+      </ul>
+      <div class="project-tags"><span class="tag">Home automation</span><span class="tag">Sensors</span></div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <div class="project-title">Dual Axis Solar Tracker</div>
+      </div>
+      <ul class="project-points">
+        <li>Designed and built a dual-axis solar tracker to maximize panel efficiency by automatically adjusting position based on the sun's movement.</li>
+        <li>Integrated sensors and microcontroller-based control for real-time tracking and improved energy capture.</li>
+      </ul>
+      <div class="project-tags"><span class="tag">Solar tracking</span><span class="tag">Microcontroller control</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="credentials">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">05</span><h2>Credentials</h2></div>
+    <div class="twocol">
+      <div>
+        <div class="skill-cat">Certificates</div>
+        <ul class="plain">
+          <li><strong>AICTE-IDEA Lab</strong> — PCB Design Fundamentals from Concept to Creation, BVRIT</li>
+          <li><strong>HCLTech</strong> — Introduction to Embedded IoT</li>
+          <li><strong>HCLTech</strong> — Embedded C &amp; MISRA C, PIC Programming, ARM Cortex Programming &amp; Peripheral Modules</li>
+        </ul>
+      </div>
+      <div>
+        <div class="skill-cat">Hackathon</div>
+        <ul class="plain">
+          <li><strong>QNX Hackathon</strong> — Qualified, cluster level</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <div class="section-head"><span class="section-num">06</span><h2>Get in Touch</h2></div>
+    <p class="contact-intro">Looking for embedded systems, IoT, or edge ML roles — happy to talk about a fit.</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:23211A0494@bvrit.ac.in">
+        <div class="contact-label">Email</div>
+        <div class="contact-value">23211A0494@bvrit.ac.in</div>
+      </a>
+      <a class="contact-card" href="tel:+916305425254">
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+91 63054 25254</div>
+      </a>
+      <a class="contact-card" href="https://linkedin.com/in/kammari-venkat-sai" target="_blank" rel="noopener">
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">Kammari Venkat Sai</div>
+      </a>
+      <a class="contact-card" href="https://github.com/Sky-9426" target="_blank" rel="noopener">
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">Sky-9426</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Kammari Venkat Sai · Hyderabad, India · Built with care
+</footer>
+
+</body>
+</html>
